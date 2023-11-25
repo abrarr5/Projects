@@ -1,7 +1,7 @@
 
--- Select * 
--- From covidvaccinations
--- order by 3,4;
+Select * 
+From covidvaccinations
+order by 3,4;
 
 Select * 
 From coviddeaths
