@@ -76,17 +76,17 @@ order by 1,2,3;
 
 -- Use CTE 
 
--- With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
--- as
--- (
--- Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(vac.new_vaccinations) OVER (Partition by dea.location, dea.date) as rollingPeopleVaccinated
--- From coviddeaths dea
--- Join covidvaccinations vac
---     On dea.location = vac.location
---     and dea.date = vac.date
--- where dea.continent is not null
--- )
--- order by 1,2,3;
+With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
+as
+(
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(vac.new_vaccinations) OVER (Partition by dea.location, dea.date) as rollingPeopleVaccinated
+From coviddeaths dea
+Join covidvaccinations vac
+    On dea.location = vac.location
+    and dea.date = vac.date
+where dea.continent is not null
+)
+order by 1,2,3;
 
 With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
 as
